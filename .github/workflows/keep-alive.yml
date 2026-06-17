@@ -1,0 +1,17 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    - cron: '0 0 */5 * *'  # 5일마다 실행
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase
+        run: |
+          curl -X GET \
+            'https://nqzwrgxrndsoyxkxncrt.supabase.co/rest/v1/' \
+            -H 'apikey: ${{ secrets.SUPABASE_ANON_KEY }}' \
+            -H 'Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}'
