@@ -3,7 +3,7 @@ import { ImageContent } from '@/types/gemini.type';
 
 export const generateFoodAnalysisByImage = async (imageParts: ImageContent[]): Promise<string> => {
   const model = getGenerativeAI().getGenerativeModel({
-    model: 'gemini-1.5-pro'
+    model: 'gemini-3.5-flash-lite'
   });
 
   const result = await model.generateContent([...imageParts, FOOD_IMAGE_ANALYSIS_PROMPT]);
@@ -21,7 +21,7 @@ export const generateCaloriesAnalysisByText = async (foodName: string, weight?: 
     `;
 
   const response = await getGenAI().models.generateContent({
-    model: 'gemini-2.0-flash',
+    model: 'gemini-3.5-flash-lite',
     contents: preInformation + CALORIES_ANALYSIS_PROMPT
   });
 
